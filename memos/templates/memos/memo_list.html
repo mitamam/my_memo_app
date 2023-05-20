@@ -1,3 +1,7 @@
+{% load static %}
+
+<link ref="stylesheet" href="{% static 'polls/style.css' %}">
+
 <h1>メモ一覧</h1>
 <p><a href="{% url "memos:memo-create" %}">新しいメモを作成する</a></p>
 <ul>

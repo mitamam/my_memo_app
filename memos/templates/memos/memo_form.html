@@ -1,3 +1,7 @@
+{% load static %}
+
+<link ref="stylesheet" href="{% static 'polls/style.css' %}">
+
 {% if memo %}
 <form action="{% url "memos:memo-edit" memo.id %}" method="post">
 	{% csrf_token %}

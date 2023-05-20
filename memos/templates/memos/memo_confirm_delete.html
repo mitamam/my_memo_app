@@ -1,3 +1,7 @@
+{% load static %}
+
+<link ref="stylesheet" href="{% static 'polls/style.css' %}">
+
 <form action="{% url "memos:memo-delete" memo.id %}" method="post">
 	{% csrf_token %}
 	<p>メモ「{{ memo.title }}」を削除しますか？</p>
