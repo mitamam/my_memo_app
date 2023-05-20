@@ -1,5 +1,20 @@
+{% if memo %}
 <form action="{% url "memos:memo-edit" memo.id %}" method="post">
 	{% csrf_token %}
+	{% if error_message %}
+		<p>{{ error_message }}</p>
+	{% endif %}
 	{{ form }}
 	<input type="submit" value="保存する">
 </form>
+<a href="{% url "memos:memo-delete" memo.id %}">メモを削除する</a>
+{% else %}
+<form action="{% url "memos:memo-create" %}" method="post">
+	{% csrf_token %}
+	{% if error_message %}
+		<p>{{ error_message }}</p>
+	{% endif %}
+	{{ form }}
+	<input type="submit" value="保存する">
+</form>
+{% endif %}

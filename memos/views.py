@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.utils import timezone
 
 from .models import Memo
 from .forms import MemoForm
@@ -13,8 +14,20 @@ def memo_list_view(request):
 
 
 def memo_create_view(request):
-    context = {"memo": None}
-    return render(request, "memos/memo_form.html", context)
+    if request.method == "POST":
+        form = MemoForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+            created_at = form.cleaned_data["created_at"]
+            memo = Memo(title=title, content=content, created_at=created_at)
+            memo.save()
+            return HttpResponseRedirect(reverse("memos:memo-list"))
+        else:
+            return render(request, "memos/memo_form.html", {"form": form, "error_message:": "Incorrect Input!"})
+    else:
+        form = MemoForm(initial={"created_at": timezone.now()})
+        return render(request, "memos/memo_form.html", {"form": form})
 
 
 def memo_edit_view(request, memo_id):
@@ -43,6 +56,10 @@ def memo_edit_view(request, memo_id):
 
 def memo_delete_view(request, memo_id):
     memo = get_object_or_404(Memo, pk=memo_id)
-    context = {"memo": memo}
-    return render(request, "memos/memo_confirm_delete.html", context)
+    if request.method == "POST":
+        is_delete = request.POST["delete"]
+        if is_delete == "はい":
+            memo.delete()
+        return HttpResponseRedirect(reverse("memos:memo-list")) 
+    return render(request, "memos/memo_confirm_delete.html", {"memo": memo})
 
