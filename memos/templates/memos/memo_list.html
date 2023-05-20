@@ -1,6 +1,7 @@
 <h1>メモ一覧</h1>
+<p><a href="{% url "memos:memo-create" %}">新しいメモを作成する</a></p>
 <ul>
 {% for memo in memo_list %}
-	<li><a>{{ memo.title }}</a></li>
+	<li><a href="{% url "memos:memo-edit" memo.id %}">{{ memo.title }}</a></li>
 {% endfor %}
 </ul>

@@ -1,0 +1,5 @@
+<form action="{% url "memos:memo-edit" memo.id %}" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="保存する">
+</form>
