@@ -1,11 +1,18 @@
 {% load static %}
 
-<link ref="stylesheet" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" href="{% static 'memos/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
-<h1>メモ一覧</h1>
-<p><a href="{% url "memos:memo-create" %}">新しいメモを作成する</a></p>
-<ul>
-{% for memo in memo_list %}
-	<li><a href="{% url "memos:memo-edit" memo.id %}">{{ memo.title }}</a></li>
-{% endfor %}
-</ul>
+<div class="container">
+	<div class="heading">
+		<h1>メモ一覧</h1>
+		<p><a href="{% url "memos:memo-create" %}" class="btn">新しいメモを作成する</a></p>
+	</div>
+	<ul>
+	{% for memo in memo_list %}
+		<li><a href="{% url "memos:memo-edit" memo.id %}">{{ memo.title }}</a></li>
+	{% endfor %}
+	</ul>
+</div>
