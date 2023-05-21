@@ -12,10 +12,12 @@
 </html>
 
 <div class="container">
-	<form action="{% url "memos:memo-delete" memo.id %}" method="post">
+	<form action="{% url "memos:memo-delete" memo.id %}" method="post" class="mt-4">
 		{% csrf_token %}
-		<p>メモ「{{ memo.title }}」を削除しますか？</p>
-		<input type="submit" name="delete" value="はい" class="btn">
-		<input type="submit" name="delete" value="いいえ" class="btn">
+		<p class="text-center">メモ「{{ memo.title }}」を削除しますか？</p>
+		<div class="text-center">
+			<input type="submit" name="delete" value="はい" class="btn btn-primary">
+			<input type="submit" name="delete" value="いいえ" class="btn btn-light">
+		</div>
 	</form>
 </div>

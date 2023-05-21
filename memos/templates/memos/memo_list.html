@@ -12,13 +12,13 @@
 </html>
 
 <div class="container">
-	<div class="heading">
+	<div class="d-flex justify-content-between mt-4 mb-2">
 		<h1>メモ一覧</h1>
-		<p><a href="{% url "memos:memo-create" %}" class="btn">新しいメモを作成する</a></p>
+		<p><a href="{% url "memos:memo-create" %}" class="btn btn-outline-primary">新しいメモを作成する</a></p>
 	</div>
-	<ul>
+	<div class="list-group">
 	{% for memo in memo_list %}
-		<li><a href="{% url "memos:memo-edit" memo.id %}">{{ memo.title }}</a></li>
+		<a href="{% url "memos:memo-edit" memo.id %}" class="list-group-item list-group-item-action">{{ memo.title }}</a>
 	{% endfor %}
-	</ul>
+	</div>
 </div>
