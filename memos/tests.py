@@ -66,7 +66,7 @@ class MemoCreateTests(TestCase):
             "created_at": timezone.now()
         }
         response = self.client.post(reverse("memos:memo-create"), data)
-        memo = Memo.objects.get(title="test memo")
+        Memo.objects.get(title="test memo")
         self.assertEqual(response.status_code, 302)
 
 
@@ -138,5 +138,32 @@ class MemoEditTests(TestCase):
             reverse("memos:memo-edit", args=(test_memo.id,)),
             data
         )
-        memo = Memo.objects.get(title="edited memo")
+        Memo.objects.get(title="edited memo")
+        self.assertEqual(response.status_code, 302)
+
+
+class MemoDeleteTests(TestCase):
+    def test_delete_memo(self):
+        test_memo = create_memo(
+                title="test memo",
+                content="This is the test memo."
+        )
+        response = self.client.post(
+                reverse("memos:memo-delete", args=(test_memo.id,)),
+                {"delete": "はい"}
+        )
+        with self.assertRaises(Memo.DoesNotExist):
+            Memo.objects.get(title="test memo")
+        self.assertEqual(response.status_code, 302)
+
+    def test_not_delete_memo(self):
+        test_memo = create_memo(
+                title="test memo",
+                content="This is the test memo."
+        )
+        response = self.client.post(
+                reverse("memos:memo-delete", args=(test_memo.id,)),
+                {"delete": "いいえ"}
+        )
+        Memo.objects.get(title="test memo")
         self.assertEqual(response.status_code, 302)
