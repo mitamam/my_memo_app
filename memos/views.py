@@ -24,7 +24,9 @@ def memo_create_view(request):
             memo.save()
             return HttpResponseRedirect(reverse("memos:memo-list"))
         else:
-            return render(request, "memos/memo_form.html", {"form": form, "error_message:": "Incorrect Input!"})
+            return render(request, "memos/memo_form.html", {
+                "form": form, "error_message:": "Incorrect Input!"
+            })
     else:
         form = MemoForm(initial={"created_at": timezone.now()})
         return render(request, "memos/memo_form.html", {"form": form})
@@ -48,7 +50,11 @@ def memo_edit_view(request, memo_id):
             )
     else:
         memo = get_object_or_404(Memo, pk=memo_id)
-        initial_data = {'title': memo.title, 'content': memo.content, 'created_at': memo.created_at}
+        initial_data = {
+            'title': memo.title,
+            'content': memo.content,
+            'created_at': memo.created_at
+        }
         form = MemoForm(initial=initial_data)
         context = {"memo": memo, "form": form}
         return render(request, "memos/memo_form.html", context)
