@@ -25,7 +25,7 @@ def memo_create_view(request):
             return HttpResponseRedirect(reverse("memos:memo-list"))
         else:
             return render(request, "memos/memo_form.html", {
-                "form": form, "error_message:": "Incorrect Input!"
+                "form": form, "error_message": "正しい値を入力してください"
             })
     else:
         form = MemoForm(initial={"created_at": timezone.now()})
@@ -46,7 +46,7 @@ def memo_edit_view(request, memo_id):
             return render(
                 request,
                 "memos/memo_form.html",
-                {"memo": memo, "error_message:": "Incorrect Input!"},
+                {"memo": memo, "error_message": "正しい値を入力してください"},
             )
     else:
         memo = get_object_or_404(Memo, pk=memo_id)
@@ -66,6 +66,6 @@ def memo_delete_view(request, memo_id):
         is_delete = request.POST["delete"]
         if is_delete == "はい":
             memo.delete()
-        return HttpResponseRedirect(reverse("memos:memo-list")) 
+        return HttpResponseRedirect(reverse("memos:memo-list"))
     return render(request, "memos/memo_confirm_delete.html", {"memo": memo})
 
