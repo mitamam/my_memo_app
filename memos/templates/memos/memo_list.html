@@ -1,5 +1,24 @@
-<ul>
-{% for memo in memo_list %}
-	<li><a>{{ memo.title }}</a></li>
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Memo App</title>
+		{% load bootstrap5 %}
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+</html>
+
+<div class="container">
+	<div class="d-flex justify-content-between mt-4 mb-2">
+		<h1>メモ一覧</h1>
+		<p><a href="{% url "memos:memo-create" %}" class="btn btn-outline-primary">新しいメモを作成する</a></p>
+	</div>
+	<div class="list-group">
+	{% for memo in memo_list %}
+		<a href="{% url "memos:memo-edit" memo.id %}" class="list-group-item list-group-item-action">{{ memo.title }}</a>
+	{% endfor %}
+	</div>
+</div>
