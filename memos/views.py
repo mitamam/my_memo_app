@@ -1,10 +1,15 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils import timezone
 
+
 from .models import Memo
 from .forms import MemoForm
+
+
+def redirect_view(request):
+    return redirect(reverse("memos:memo-list"))
 
 
 def memo_list_view(request):
