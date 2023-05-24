@@ -1,6 +1,6 @@
 # my_memo_app
 
-<img src="https://github.com/mitamam/my_memo_app/assets/82627076/83904827-2b10-4f76-88bc-e8715051d318" width="560px">
+<img src="https://github.com/mitamam/my_memo_app/assets/82627076/252ba3cc-4485-4340-9416-712397048d0b" width="560px">
 
 This is a memo application created for learning Django.
 
