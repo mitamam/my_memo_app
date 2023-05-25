@@ -9,5 +9,6 @@ This is a memo application created for learning Django.
 git clone https://github.com/mitamam/my_memo_app.git
 cd my_memo_app/
 pip install -r requirements.txt
+python manage.py migrate
 python manage.py runserver
 ```
