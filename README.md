@@ -5,10 +5,16 @@
 This is a memo application created for learning Django.
 
 ## Usage
-```
+```shell
 git clone https://github.com/mitamam/my_memo_app.git
 cd my_memo_app/
+
 pip install -r requirements.txt
+
+# Generate SECRET_KEY
+n=$(python manage.py shell -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")
+echo SECRET_KEY=$n > .env
+
 python manage.py migrate
 python manage.py runserver
 ```
