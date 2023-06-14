@@ -6,7 +6,8 @@ This memo application was created using Django.
 
 It allows you to create, view, edit, and delete memos.
 
-<img src="https://github.com/mitamam/my_memo_app/assets/82627076/252ba3cc-4485-4340-9416-712397048d0b" width="560px">
+<img src="https://github.com/mitamam/my_memo_app/assets/82627076/e1b6a156-b8dc-48c0-884e-20150316e18e" width="560px">
+
   
 </div>
 
